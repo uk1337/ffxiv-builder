@@ -78,15 +78,15 @@
         if (!db_isClassExists($class_id)) { return false; }
         if (db_isItemExists($itm_name)) { return false; }
 
-        $sql = 'INSERT INTO `items`(`name`, `level`, `dexterity`, `hitrate`, `critical`, `determination`, `skillspeed`, `vitality`, `slot`, `class_id`) 
+        $sql = 'INSERT INTO `items`(`name`, `level`, `dexterity`, `hitrate`, `critical`, `determination`, `skillspeed`, `vitality`, `slot`) 
         VALUES 
-        ("'.$itm_name.'",'.$itm_level.','.$itm_dexterity.','.$itm_hitrate.','.$itm_critical.','.$itm_determination.','.$itm_skillspeed.','.$itm_vitality.','.$itm_slot.','.$class_id.')';
+        ("'.$itm_name.'",'.$itm_level.','.$itm_dexterity.','.$itm_hitrate.','.$itm_critical.','.$itm_determination.','.$itm_skillspeed.','.$itm_vitality.','.$itm_slot.')';
         db_exec($sql);
 
         $sql = 'SELECT `itm_id` FROM `items` WHERE `name` = "' . $itm_name . '";';
         $itm_id = db_exec($sql);
 
-        $sql = 'INSERT INTO `relation_itm_slot`(`itm_id`, `slot`) VALUES ('.$itm_id.','.$itm_slot.')';
+        $sql = 'INSERT INTO `relation_itm_slot`(`itm_id`, `class_id`) VALUES ('.$itm_id.','.$class_id.')';
         db_exec($sql);
 
         return true;

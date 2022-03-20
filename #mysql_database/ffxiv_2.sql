@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 20. Mrz 2022 um 13:39
+-- Erstellungszeit: 20. Mrz 2022 um 19:25
 -- Server-Version: 10.4.22-MariaDB
 -- PHP-Version: 8.0.13
 
@@ -55,18 +55,8 @@ CREATE TABLE `items` (
   `skillspeed` int(11) NOT NULL,
   `vitality` int(11) NOT NULL,
   `slot` int(11) NOT NULL,
-  `class_id` int(11) NOT NULL,
   `critical` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Daten für Tabelle `items`
---
-
-INSERT INTO `items` (`itm_id`, `name`, `level`, `dexterity`, `hitrate`, `determination`, `skillspeed`, `vitality`, `slot`, `class_id`, `critical`) VALUES
-(14, 'Spirit of XTC', 1337, 100, 101, 102, 103, 104, 4, 6, 0),
-(15, 'Spirit of XTC 2222', 1337, 100, 101, 102, 103, 104, 4, 6, 0),
-(16, 'Monk Helmet', 12, 13, 14, 16, 17, 18, 2, 8, 15);
 
 -- --------------------------------------------------------
 
@@ -113,17 +103,8 @@ INSERT INTO `klassen` (`class_id`, `name`) VALUES
 
 CREATE TABLE `relation_itm_slot` (
   `itm_id` int(11) NOT NULL,
-  `slot` int(11) NOT NULL
+  `class_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Daten für Tabelle `relation_itm_slot`
---
-
-INSERT INTO `relation_itm_slot` (`itm_id`, `slot`) VALUES
-(14, 4),
-(15, 4),
-(16, 2);
 
 --
 -- Indizes der exportierten Tabellen
@@ -140,8 +121,7 @@ ALTER TABLE `builds`
 -- Indizes für die Tabelle `items`
 --
 ALTER TABLE `items`
-  ADD PRIMARY KEY (`itm_id`),
-  ADD KEY `class_id` (`class_id`);
+  ADD PRIMARY KEY (`itm_id`);
 
 --
 -- Indizes für die Tabelle `klassen`
@@ -153,7 +133,8 @@ ALTER TABLE `klassen`
 -- Indizes für die Tabelle `relation_itm_slot`
 --
 ALTER TABLE `relation_itm_slot`
-  ADD KEY `itm_id` (`itm_id`);
+  ADD KEY `itm_id` (`itm_id`),
+  ADD KEY `class_id` (`class_id`);
 
 --
 -- AUTO_INCREMENT für exportierte Tabellen
@@ -169,7 +150,7 @@ ALTER TABLE `builds`
 -- AUTO_INCREMENT für Tabelle `items`
 --
 ALTER TABLE `items`
-  MODIFY `itm_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `itm_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Constraints der exportierten Tabellen
@@ -182,16 +163,11 @@ ALTER TABLE `builds`
   ADD CONSTRAINT `builds_ibfk_1` FOREIGN KEY (`class_id`) REFERENCES `klassen` (`class_id`);
 
 --
--- Constraints der Tabelle `items`
---
-ALTER TABLE `items`
-  ADD CONSTRAINT `items_ibfk_1` FOREIGN KEY (`class_id`) REFERENCES `klassen` (`class_id`);
-
---
 -- Constraints der Tabelle `relation_itm_slot`
 --
 ALTER TABLE `relation_itm_slot`
-  ADD CONSTRAINT `relation_itm_slot_ibfk_1` FOREIGN KEY (`itm_id`) REFERENCES `items` (`itm_id`);
+  ADD CONSTRAINT `relation_itm_slot_ibfk_1` FOREIGN KEY (`itm_id`) REFERENCES `items` (`itm_id`),
+  ADD CONSTRAINT `relation_itm_slot_ibfk_2` FOREIGN KEY (`class_id`) REFERENCES `klassen` (`class_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

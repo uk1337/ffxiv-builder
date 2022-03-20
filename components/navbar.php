@@ -42,14 +42,14 @@
         teilen.
         <br><br><br>
         <b>Ersteller</b><br><br>
-        elCallado#1111
+        Julian Kube - elCallado#1111
         <ul>
             <li>Idee und Konzeption</li>
             <li>Erstellung der Datenbank-Tabellen</li>
         </ul>
         </p>
         <br>
-        uknwn#0001
+        Lucas Mächler - uknwn#0001
         <ul>
             <li>Anpassung der Datenbank-Tabellen</li>
             <li>Programmierung des PHP-Frameworks und DB-Anbindung</li>
