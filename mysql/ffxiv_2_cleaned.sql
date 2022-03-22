@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 22. Mrz 2022 um 18:55
+-- Erstellungszeit: 22. Mrz 2022 um 21:56
 -- Server-Version: 10.4.22-MariaDB
 -- PHP-Version: 8.0.13
 
@@ -144,13 +144,13 @@ ALTER TABLE `relation_itm_class`
 -- AUTO_INCREMENT für Tabelle `builds`
 --
 ALTER TABLE `builds`
-  MODIFY `build_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `build_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT für Tabelle `items`
 --
 ALTER TABLE `items`
-  MODIFY `itm_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
+  MODIFY `itm_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints der exportierten Tabellen
