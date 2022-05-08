@@ -10,6 +10,11 @@
     include 'router.php';
 ?>
 
+<!--
+    Coded by Lucas M.
+	Discord: uknwn#0001
+-->
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
